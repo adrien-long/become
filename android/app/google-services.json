@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "548490423113",
+    "project_id": "become-94204",
+    "storage_bucket": "become-94204.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548490423113:android:fe993627cd434384af0898",
+        "android_client_info": {
+          "package_name": "com.mycompany.become"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcyPllW5CPexF0ayg-dU0kKNBkEKZj31A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
