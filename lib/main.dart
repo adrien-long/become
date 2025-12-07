@@ -1,3 +1,4 @@
+import 'package:home_widget/home_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -133,5 +134,19 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       routerConfig: _router,
     );
+  }
+
+  Future<void> updateHomeWidget() async {
+    await HomeWidget.setAppGroupId('group.com.mycompany.become.widgetgroup');
+
+    HomeWidget.saveWidgetData<List<String>>(
+        'textList', ['Text1', 'Text2', 'Text3']);
+
+    HomeWidget.updateWidget(
+      iOSName: 'BecomeWidget',
+      androidName: 'BecomeWidgetProvider',
+    );
+
+    await HomeWidget.getWidgetData('createdTime');
   }
 }
