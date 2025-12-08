@@ -1,4 +1,4 @@
-package com.airok.quit
+package com.mycompany.become
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import es.antonborri.home_widget.HomeWidgetPlugin
+import org.json.JSONArray
 
 class BecomeWidgetProvider : AppWidgetProvider() {
 
@@ -54,10 +55,18 @@ class BecomeWidgetProvider : AppWidgetProvider() {
     private fun getWidgetData(context: Context): WidgetData {
         val prefs = HomeWidgetPlugin.getData(context)
 
-        val textList = prefs.getStringSet("textList", emptySet())?.toList() ?: emptyList()
+        val json = prefs.getString("textList", "[]") ?: "[]"
 
-        val randomText = if (textList.isNotEmpty()) {
-            textList.random()
+        val texts: List<String> = try {
+            JSONArray(json).let { arr ->
+                List(arr.length()) { index -> arr.getString(index) }
+            }
+        } catch (e: Exception) {
+            emptyList()
+        }
+
+        val randomText = if (texts.isNotEmpty()) {
+            texts.random()
         } else {
             ""
         }
@@ -78,7 +87,7 @@ class BecomeWidgetProvider : AppWidgetProvider() {
     }
 
 
-    private fun setRepeatingUpdate(context: Context) {
+    fun setRepeatingUpdate(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val intent = Intent(context, BecomeWidgetProvider::class.java).apply {

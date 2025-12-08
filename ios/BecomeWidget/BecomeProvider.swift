@@ -1,18 +1,38 @@
 import Foundation
 import WidgetKit
+import os
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> TextEntry {
-        TextEntry(date: Date(), text: "Loading…")
+        .placeholder
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TextEntry) -> Void) {
-        completion(TextEntry(date: Date(), text: "Preview"))
+        if context.isPreview {
+                    completion(.previewPlaceholder)
+                } else {
+                    completion(.placeholder)
+                }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<TextEntry>) -> Void) {
         let userDefaults = UserDefaults(suiteName: "group.com.mycompany.become.widgetgroup")
-        let list = userDefaults?.stringArray(forKey: "textList") ?? ["No data"]
+        let jsonString = userDefaults?.string(forKey: "textList") ?? "[]"
+        debugPrint("Raw jsonString: \(jsonString)")
+
+        // Use os.Logger and ensure we log after decoding
+        let logger = os.Logger(subsystem: "com.mycompany.become", category: "Widget")
+
+        let texts: [String]
+        do {
+            texts = try JSONDecoder().decode([String].self, from: Data(jsonString.utf8))
+        } catch {
+            os.Logger(subsystem: "com.mycompany.become", category: "Widget")
+                .error("Failed to decode textList: \(error.localizedDescription, privacy: .public)")
+            texts = []
+        }
+        logger.info("Raw jsonString: \(jsonString)")
+        logger.info("Decoded texts: \(texts, privacy: .public)")
 
         var entries: [TextEntry] = []
         let currentDate = Date()
@@ -22,7 +42,7 @@ struct Provider: TimelineProvider {
 
             let entry = TextEntry(
                 date: entryDate,
-                text: list.randomElement() ?? "No data"
+                text: texts.randomElement() ?? "No data member"
             )
 
             entries.append(entry)
@@ -30,5 +50,21 @@ struct Provider: TimelineProvider {
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
+    }
+}
+
+extension TextEntry {
+    static var placeholder: TextEntry {
+        TextEntry(
+            date: Date(),
+            text: "Placeholder",
+        )
+    }
+    
+    static var previewPlaceholder: TextEntry {
+        TextEntry(
+            date: Date(),
+            text: "previewPlaceholder",
+        )
     }
 }

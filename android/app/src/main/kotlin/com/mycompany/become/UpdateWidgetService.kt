@@ -1,4 +1,4 @@
-package com.airok.quit
+package com.mycompany.become
 
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -20,7 +20,7 @@ class UpdateWidgetService : JobIntentService() {
 
         val appWidgetManager = AppWidgetManager.getInstance(this)
         val widget = ComponentName(this, BecomeWidgetProvider::class.java)
-        val views = RemoteViews(packageName, R.layout.widget_page1_layout)
+        val views = RemoteViews(packageName, R.layout.become_layout)
 
         views.setTextViewText(R.id.text_value, text)
 
