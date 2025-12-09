@@ -1,3 +1,5 @@
+import 'package:home_widget/home_widget.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -43,6 +45,8 @@ class _QuotationsViewWidgetState extends State<QuotationsViewWidget> {
     super.initState();
     _model = createModel(context, () => QuotationsViewModel());
 
+    _updateHomeWidget();
+
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await widget.onInit?.call();
@@ -56,6 +60,24 @@ class _QuotationsViewWidgetState extends State<QuotationsViewWidget> {
     _model.maybeDispose();
 
     super.dispose();
+  }
+
+  Future<void> _updateHomeWidget() async {
+    await HomeWidget.setAppGroupId('group.com.mycompany.become.widgetgroup');
+
+    List<String> list = widget.quotationsList?.map((q) => q.content).toList() ?? [];
+
+    if (list.isEmpty) return;
+
+    await HomeWidget.saveWidgetData<String>(
+      'textList',
+      jsonEncode(list),
+    );
+
+    await HomeWidget.updateWidget(
+      iOSName: 'BecomeWidget',
+      androidName: 'BecomeWidgetProvider',
+    );
   }
 
   @override
