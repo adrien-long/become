@@ -671,7 +671,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // NotificationSettings
   {
     'agn05gpd': {
-      'en': 'Receive quotes throughout the day',
+      'en': 'Receive messages throughout the day',
       'fr': 'Recevez des devis tout au long de la journée',
     },
     'c9aignu8': {
@@ -680,7 +680,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'De petites doses de motivation peuvent faire une grande différence',
     },
     'r9hqbhxu': {
-      'en': 'Motivation',
+      'en': 'Become',
       'fr': 'Motivation',
     },
     '65gqrs1s': {

@@ -1,10 +1,8 @@
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'next_button_model.dart';
 export 'next_button_model.dart';
 
@@ -22,11 +20,8 @@ class NextButtonWidget extends StatefulWidget {
   State<NextButtonWidget> createState() => _NextButtonWidgetState();
 }
 
-class _NextButtonWidgetState extends State<NextButtonWidget>
-    with TickerProviderStateMixin {
+class _NextButtonWidgetState extends State<NextButtonWidget> {
   late NextButtonModel _model;
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -38,21 +33,6 @@ class _NextButtonWidgetState extends State<NextButtonWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => NextButtonModel());
-
-    animationsMap.addAll({
-      'buttonOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeIn,
-            delay: 0.0.ms,
-            duration: 2000.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-    });
   }
 
   @override
@@ -103,7 +83,7 @@ class _NextButtonWidgetState extends State<NextButtonWidget>
           elevation: 0.0,
           borderRadius: BorderRadius.circular(12.0),
         ),
-      ).animateOnPageLoad(animationsMap['buttonOnPageLoadAnimation']!),
+      ),
     );
   }
 }

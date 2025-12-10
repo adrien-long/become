@@ -198,7 +198,7 @@ come */
                                           .override(
                                             fontFamily: 'Grift',
                                             color: FlutterFlowTheme.of(context)
-                                                .mainColor,
+                                                .second,
                                             fontSize: 80.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w800,
@@ -219,7 +219,7 @@ come */
                                         .override(
                                           fontFamily: 'Grift',
                                           color: FlutterFlowTheme.of(context)
-                                              .primary,
+                                              .second,
                                           fontSize: 24.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
