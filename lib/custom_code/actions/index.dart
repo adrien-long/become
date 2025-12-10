@@ -21,3 +21,4 @@ export 'navigate_to_onboarding_page_auto.dart'
 export 'hide_keyboard_action.dart' show hideKeyboardAction;
 export 'get_users_count.dart' show getUsersCount;
 export 'test_set_premium.dart' show testSetPremium;
+export 'update_home_widget.dart' show updateHomeWidget;
