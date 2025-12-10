@@ -1,4 +1,4 @@
-package com.airok.quit
+package com.mycompany.become
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -9,7 +9,7 @@ class BootReceiver : BroadcastReceiver() {
         when (intent.action) {
             Intent.ACTION_BOOT_COMPLETED,
             Intent.ACTION_REBOOT -> {
-                BecomeWidgetProvider().setHourlyUpdate(context)
+                BecomeWidgetProvider().setRepeatingUpdate(context)
             }
         }
     }

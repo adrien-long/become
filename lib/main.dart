@@ -91,6 +91,8 @@ class _MyAppState extends State<MyApp> {
       Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
+
+    _updateHomeWidget();
   }
 
   @override
@@ -136,17 +138,17 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Future<void> updateHomeWidget() async {
+  Future<void> _updateHomeWidget() async {
     await HomeWidget.setAppGroupId('group.com.mycompany.become.widgetgroup');
 
-    HomeWidget.saveWidgetData<List<String>>(
-        'textList', ['Text1', 'Text2', 'Text3']);
+    await HomeWidget.saveWidgetData<String>(
+      'textList',
+      jsonEncode(['Text1', 'Text2', 'Text3', 'Text4','Text5','Text6','Text7','Text8']),
+    );
 
-    HomeWidget.updateWidget(
+    await HomeWidget.updateWidget(
       iOSName: 'BecomeWidget',
       androidName: 'BecomeWidgetProvider',
     );
-
-    await HomeWidget.getWidgetData('createdTime');
   }
 }

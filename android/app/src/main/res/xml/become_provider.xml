@@ -3,6 +3,7 @@
     android:initialLayout="@layout/become_layout"
     android:maxHeight="160dp"
     android:maxWidth="335dp"
-    android:minHeight="80dp"
-    android:minWidth="335dp"
+    android:minHeight="40dp"
+    android:minWidth="80dp"
+    android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"/>

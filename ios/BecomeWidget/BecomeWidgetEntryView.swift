@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct BecomeWidgetEntryView: View {
     var entry: Provider.Entry
@@ -6,6 +7,9 @@ struct BecomeWidgetEntryView: View {
     var body: some View {
         Text(entry.text)
             .font(.body)
-            .padding()
+            .padding(4)
+            .containerBackground(for: .widget) {
+                Color.clear
+            }
     }
 }
