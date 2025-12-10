@@ -7,7 +7,12 @@ struct BecomeWidgetEntryView: View {
     var body: some View {
         Text(entry.text)
             .font(.body)
-            .padding(4)
+            .multilineTextAlignment(.center)
+            .lineLimit(5)
+            .minimumScaleFactor(0.7)
+            .frame(maxWidth: .infinity,
+                   maxHeight: .infinity,
+                   alignment: .center)
             .containerBackground(for: .widget) {
                 Color.clear
             }
