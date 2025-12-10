@@ -9,7 +9,7 @@ struct BecomeWidget: Widget {
             BecomeWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Become Widget")
-        .description("Shows a random text from Flutter.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .description("You got this.")
+        .supportedFamilies([.accessoryRectangular, .systemSmall, .systemMedium])
     }
 }

@@ -58,7 +58,7 @@ extension TextEntry {
     static var previewPlaceholder: TextEntry {
         TextEntry(
             date: Date(),
-            text: "previewPlaceholder",
+            text: "You don't have to be \"born with it.\" You can build it, brick by brick.",
         )
     }
 }
