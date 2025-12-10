@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/new_build/main_new/component/heart_toggle/heart_toggle_widget.dart';
 import '/new_build/sheets/screenshot_bottom_sheet_new/screenshot_bottom_sheet_new_widget.dart';
+import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -46,6 +48,13 @@ class _QuotationsViewWidgetState extends State<QuotationsViewWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await widget.onInit?.call();
+      unawaited(
+        () async {
+          await actions.updateHomeWidget(
+            widget.quotationsList!.toList(),
+          );
+        }(),
+      );
       _model.ref = widget.quotationsList?.firstOrNull?.reference;
       safeSetState(() {});
     });
