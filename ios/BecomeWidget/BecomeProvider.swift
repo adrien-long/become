@@ -18,10 +18,6 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<TextEntry>) -> Void) {
         let userDefaults = UserDefaults(suiteName: "group.com.mycompany.become.widgetgroup")
         let jsonString = userDefaults?.string(forKey: "textList") ?? "[]"
-        debugPrint("Raw jsonString: \(jsonString)")
-
-        // Use os.Logger and ensure we log after decoding
-        let logger = os.Logger(subsystem: "com.mycompany.become", category: "Widget")
 
         let texts: [String]
         do {
@@ -31,8 +27,6 @@ struct Provider: TimelineProvider {
                 .error("Failed to decode textList: \(error.localizedDescription, privacy: .public)")
             texts = []
         }
-        logger.info("Raw jsonString: \(jsonString)")
-        logger.info("Decoded texts: \(texts, privacy: .public)")
 
         var entries: [TextEntry] = []
         let currentDate = Date()
@@ -42,7 +36,7 @@ struct Provider: TimelineProvider {
 
             let entry = TextEntry(
                 date: entryDate,
-                text: texts.randomElement() ?? "No data member"
+                text: texts.randomElement() ?? "No data"
             )
 
             entries.append(entry)
